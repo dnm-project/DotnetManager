@@ -17,21 +17,24 @@ internal sealed class RuntimeLocator(IDotnetRootLocatorService rootLocator)
     private static IEnumerable<RuntimeInstallation> FindRuntimes(string? root)
     {
         if (root is null)
-            return [];
+            yield break;
 
         var sharedRoot = Path.Combine(root, "shared");
 
         if (!Directory.Exists(sharedRoot))
-            return [];
+            yield break;
 
-        return Directory.EnumerateDirectories(sharedRoot)
-            .SelectMany(frameworkPath =>
+        foreach (var frameworkPath in Directory.EnumerateDirectories(sharedRoot))
+        {
+            var framework = Path.GetFileName(frameworkPath);
+
+            foreach (var versionPath in Directory.EnumerateDirectories(frameworkPath))
             {
-                var framework = Path.GetFileName(frameworkPath);
+                if (!NuGetVersion.TryParse(Path.GetFileName(versionPath), out var version))
+                    continue;
 
-                return Directory.EnumerateDirectories(frameworkPath)
-                    .Select(versionPath => new RuntimeInstallation(framework,
-                        NuGetVersion.Parse(Path.GetFileName(versionPath)), versionPath));
-            });
+                yield return new RuntimeInstallation(framework, version, versionPath);
+            }
+        }
     }
 }

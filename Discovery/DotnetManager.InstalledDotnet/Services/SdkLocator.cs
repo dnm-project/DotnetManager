@@ -17,15 +17,19 @@ internal sealed class SdkLocator(IDotnetRootLocatorService rootLocator)
     private static IEnumerable<SdkInstallation> FindSdks(string? root)
     {
         if (root is null)
-            return [];
+            yield break;
 
         var sdkRoot = Path.Combine(root, "sdk");
 
         if (!Directory.Exists(sdkRoot))
-            return [];
+            yield break;
 
-        return Directory.EnumerateDirectories(sdkRoot)
-            .Select(path => new SdkInstallation(NuGetVersion.Parse(Path.GetFileName(path)),
-                path));
+        foreach (var path in Directory.EnumerateDirectories(sdkRoot))
+        {
+            if (!NuGetVersion.TryParse(Path.GetFileName(path), out var version))
+                continue;
+
+            yield return new SdkInstallation(version, path);
+        }
     }
 }

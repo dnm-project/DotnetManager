@@ -3,7 +3,6 @@ using DotnetManager.Installation.Resolver.Exceptions;
 using DotnetManager.Installation.Resolver.Models.Results;
 using DotnetManager.Platform.Abstractions;
 using DotnetManager.ReleaseMetadata.Models.Releases;
-using NuGet.Versioning;
 
 namespace DotnetManager.Installation.Resolver.Abstraction;
 

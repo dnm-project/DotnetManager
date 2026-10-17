@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using DotnetManager.Installation.Abstractions.Archives;
 using DotnetManager.Installation.Abstractions.Downloads;
 using DotnetManager.Installation.Abstractions.Installation;
@@ -7,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DotnetManager.Installation.Services.Installation;
 
-internal sealed class DotnetInstallOrchestrator : IDotnetInstallOrchestratorService
+internal sealed class DotnetInstallOrchestrator//: IDotnetInstallOrchestratorService
 {
     // private readonly IDotnetInstallResolverService _resolver;
     private readonly IDotnetDownloaderService _downloader;
@@ -29,7 +28,7 @@ internal sealed class DotnetInstallOrchestrator : IDotnetInstallOrchestratorServ
         _finalizer = finalizer;
         _logger = logger;
     }
-
+/*
     public async Task InstallAsync(InstallRequest request, CancellationToken cancellationToken)
     {
         var stopwatch = Stopwatch.StartNew();
@@ -53,4 +52,5 @@ internal sealed class DotnetInstallOrchestrator : IDotnetInstallOrchestratorServ
         _logger.LogInformation("\nInstallation completed successfully in {ElapsedSeconds:F1} seconds",
             stopwatch.Elapsed.TotalSeconds);
     }
+    */
 }

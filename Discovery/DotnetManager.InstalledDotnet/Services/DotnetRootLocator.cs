@@ -9,14 +9,26 @@ internal sealed class DotnetRootLocator(
 {
     public IReadOnlyCollection<string> GetRoots()
     {
-        var roots = sources.SelectMany(x => x.DiscoverRoots())
-            .Where(Directory.Exists)
-            .Select(Path.GetFullPath)
+        var roots = FindRoots()
             .Distinct(StringComparer.Ordinal)
             .ToList();
 
         logger.LogDebug("Discovered {RootCount} .NET root(s): {Roots}",
             roots.Count, string.Join(", ", roots));
         return roots;
+    }
+
+    private IEnumerable<string> FindRoots()
+    {
+        foreach (var source in sources)
+        {
+            foreach (var root in source.DiscoverRoots())
+            {
+                if (!Directory.Exists(root))
+                    continue;
+
+                yield return Path.GetFullPath(root);
+            }
+        }
     }
 }
