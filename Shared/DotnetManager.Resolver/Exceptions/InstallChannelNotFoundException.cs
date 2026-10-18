@@ -1,0 +1,37 @@
+using DotnetManager.ReleaseMetadata.Models;
+using NuGet.Versioning;
+
+namespace DotnetManager.Resolver.Exceptions;
+
+public sealed class InstallChannelNotFoundException : Exception
+{
+
+    public NuGetVersion? ChannelVersion { get; }
+
+    public ReleaseTypes? ReleaseType { get; }
+
+    public SupportPhases? SupportPhase { get; }
+
+    public InstallChannelNotFoundException(NuGetVersion channelVersion)
+        : base($".NET channel '{channelVersion}' was not found.")
+    {
+        ChannelVersion = channelVersion;
+    }
+
+    public InstallChannelNotFoundException(
+        ReleaseTypes? releaseType,
+        SupportPhases? supportPhase)
+        : base(CreateMessage(releaseType, supportPhase))
+    {
+        ReleaseType = releaseType;
+        SupportPhase = supportPhase;
+    }
+
+    private static string CreateMessage(ReleaseTypes? releaseType, SupportPhases? supportPhase)
+    {
+        var releaseTypeText = releaseType?.ToString() ?? "any release type";
+        var supportPhaseText = supportPhase?.ToString() ?? "any support phase";
+
+        return $"No .NET channel matches release type '{releaseTypeText}' and support phase '{supportPhaseText}'.";
+    }
+}

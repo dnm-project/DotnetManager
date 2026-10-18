@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net11.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Discovery\DotnetManager.ReleaseMetadata\DotnetManager.ReleaseMetadata.csproj"/>
+        <ProjectReference Include="..\..\Shared\DotnetManager.Core\DotnetManager.Core.csproj"/>
+        <ProjectReference Include="..\..\Shared\DotnetManager.Platform\DotnetManager.Platform.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="NuGet.Versioning">
+            <HintPath>..\..\..\..\.nuget\packages\nuget.versioning\7.9.0\lib\net8.0\NuGet.Versioning.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+</Project>
