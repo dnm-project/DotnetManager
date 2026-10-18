@@ -1,5 +1,4 @@
-using DotnetManager.Installation.Exceptions;
-using DotnetManager.Installation.Resolver.Exceptions;
+using DotnetManager.Resolver.Exceptions;
 
 namespace DotnetManager.Cli.Commands.Install;
 

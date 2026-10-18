@@ -1,6 +1,3 @@
-using DotnetManager.Installation.Abstractions.Downloads;
-using DotnetManager.Installation.Models.Downloads;
-
 namespace DotnetManager.UnitTests.Installation;
 
 internal sealed class OrchestratorStubDownloader(string directory) : IDotnetDownloaderService

@@ -1,5 +1,4 @@
 using DotnetManager.Installation.Exceptions;
-using DotnetManager.Installation.Services.Installation;
 using DotnetManager.UserEnvironment.Abstraction;
 using Microsoft.Extensions.Logging.Abstractions;
 

@@ -1,5 +1,3 @@
-using DotnetManager.Installation.Abstractions.Archives;
-
 namespace DotnetManager.UnitTests.Installation;
 
 internal sealed class OrchestratorRecordingExtractor : IArchiveExtractorService

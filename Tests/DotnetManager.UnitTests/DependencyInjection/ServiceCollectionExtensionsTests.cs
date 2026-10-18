@@ -1,6 +1,4 @@
 using DotnetManager.DependencyInjection;
-using DotnetManager.Installation.Abstractions.Installation;
-using DotnetManager.Removal.Abstractions;
 using DotnetManager.UserEnvironment.Abstraction;
 using Microsoft.Extensions.DependencyInjection;
 

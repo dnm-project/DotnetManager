@@ -1,6 +1,5 @@
 using System.Security.Cryptography;
 using DotnetManager.Installation.Exceptions;
-using DotnetManager.Installation.Models.Downloads;
 using DotnetManager.Installation.Services.Downloads;
 using Microsoft.Extensions.Logging.Abstractions;
 

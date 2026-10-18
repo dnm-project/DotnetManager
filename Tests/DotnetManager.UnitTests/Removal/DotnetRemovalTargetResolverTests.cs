@@ -1,6 +1,5 @@
 using DotnetManager.Core.Models;
 using DotnetManager.InstalledDotnet.Models;
-using DotnetManager.Removal.Services;
 using Microsoft.Extensions.Logging.Abstractions;
 using NuGet.Versioning;
 

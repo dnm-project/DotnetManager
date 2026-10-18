@@ -1,5 +1,3 @@
-using DotnetManager.Installation.Models.Downloads;
-
 namespace DotnetManager.UnitTests.Installation;
 
 internal sealed class OrchestratorStubResolver(IReadOnlyCollection<DotnetDownloadSource> sources)

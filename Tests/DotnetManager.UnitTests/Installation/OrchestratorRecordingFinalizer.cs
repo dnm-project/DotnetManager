@@ -1,5 +1,3 @@
-using DotnetManager.Installation.Abstractions.Installation;
-
 namespace DotnetManager.UnitTests.Installation;
 
 internal sealed class OrchestratorRecordingFinalizer : IDotnetInstallationFinalizerService
