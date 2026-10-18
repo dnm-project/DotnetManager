@@ -1,4 +1,5 @@
 using DotnetManager.Installation.Planning.Abstraction;
+using DotnetManager.Installation.Planning.Models;
 using DotnetManager.Installation.Resolver.Models.Results;
 using DotnetManager.InstalledDotnet.Abstractions;
 using DotnetManager.InstalledDotnet.Models;
@@ -17,8 +18,7 @@ public class InstallationPlanner : IInstallationPlanner
         _runtimeService = runtimeService;
     }
 
-    public Task<IReadOnlyList<ResolvedComponent>> PlanAsync(IReadOnlyList<ResolvedComponent> components,
-        CancellationToken cancellationToken)
+    public Task<IReadOnlyList<ResolvedComponent>> PlanAsync(InstallPlanningRequest request, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

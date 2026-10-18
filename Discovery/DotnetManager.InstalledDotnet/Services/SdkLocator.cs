@@ -14,6 +14,11 @@ internal sealed class SdkLocator(IDotnetRootLocatorService rootLocator)
             .ToList();
     }
 
+    public IReadOnlyCollection<SdkInstallation> Find(string root)
+    {
+        return FindSdks(root).ToList();
+    }
+
     private static IEnumerable<SdkInstallation> FindSdks(string? root)
     {
         if (root is null)

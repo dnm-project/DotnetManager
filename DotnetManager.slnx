@@ -15,9 +15,6 @@
         <Project Path="Installation/DotnetManager.Installation.Resolver/DotnetManager.Installation.Resolver.csproj" />
         <Project Path="Installation/DotnetManager.Installation/DotnetManager.Installation.csproj" />
     </Folder>
-    <Folder Name="/Removal/">
-        <Project Path="Removal/DotnetManager.Removal/DotnetManager.Removal.csproj" />
-    </Folder>
     <Folder Name="/Shared/">
         <Project Path="Shared/DotnetManager.Core/DotnetManager.Core.csproj" />
         <Project Path="Shared/DotnetManager.Platform/DotnetManager.Platform.csproj" />
