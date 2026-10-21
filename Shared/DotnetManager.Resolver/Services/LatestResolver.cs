@@ -1,5 +1,4 @@
 using DotnetManager.Core.Models;
-using DotnetManager.Platform.Abstractions;
 using DotnetManager.ReleaseMetadata.Abstractions;
 using DotnetManager.ReleaseMetadata.Models.Index;
 using DotnetManager.Resolver.Abstraction;
@@ -9,10 +8,9 @@ using DotnetManager.Resolver.Models.Targets;
 
 namespace DotnetManager.Resolver.Services;
 
-internal sealed class LatestResolver(ISdkManifestProviderService provider, IHostPlatformService platform)
-    : InstallResolverBase(platform), IInstallResolver<LatestSelector>
+internal sealed class LatestResolver(ISdkManifestProviderService provider)
+    : InstallResolverBase, IInstallResolver<LatestSelector>
 {
-
     public async Task<ResolvedInstallation> ResolveAsync(LatestSelector latest,
         IEnumerable<DotnetComponent> requestComponents,
         string? requestRid,
@@ -21,18 +19,16 @@ internal sealed class LatestResolver(ISdkManifestProviderService provider, IHost
         var index = await provider.GetReleaseIndexAsync(cancellationToken);
         IEnumerable<SdkChannel> channels = index.Releases;
 
-        if (latest.ReleaseType is {} releaseType)
+        if (latest.ReleaseType is { } releaseType)
             channels = channels.Where(x => x.ReleaseTypes == releaseType);
 
-        if (latest.SupportPhase is {} supportPhase)
+        if (latest.SupportPhase is { } supportPhase)
             channels = channels.Where(x => x.SupportPhase == supportPhase);
 
         var sdkChannel = channels.MaxBy(x => x.ChannelVersion);
 
         if (sdkChannel is null)
-        {
             throw new InstallChannelNotFoundException(latest.ReleaseType, latest.SupportPhase);
-        }
 
         var release = await provider.GetReleasesAsync(sdkChannel.ReleasesUri, cancellationToken);
 
@@ -41,6 +37,4 @@ internal sealed class LatestResolver(ISdkManifestProviderService provider, IHost
 
         return ResolveRelease(release, requestComponents, latestRelease, requestRid);
     }
-
-
 }

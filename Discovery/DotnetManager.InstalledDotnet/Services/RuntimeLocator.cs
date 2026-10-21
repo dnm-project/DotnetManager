@@ -14,11 +14,6 @@ internal sealed class RuntimeLocator(IDotnetRootLocatorService rootLocator)
             .ToList();
     }
 
-    public IReadOnlyCollection<RuntimeInstallation> Find(string root)
-    {
-        return FindRuntimes(root).ToList();
-    }
-
     private static IEnumerable<RuntimeInstallation> FindRuntimes(string? root)
     {
         if (root is null)

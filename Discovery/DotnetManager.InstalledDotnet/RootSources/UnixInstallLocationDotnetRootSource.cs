@@ -8,7 +8,6 @@ internal sealed class UnixInstallLocationDotnetRootSource : IDotnetRootSource
 
     public IEnumerable<string> DiscoverRoots()
     {
-        // TODO: Use IHostPlatformService.IsUnix instead of direct operating-system checks.
         if (!OperatingSystem.IsLinux() && !OperatingSystem.IsMacOS())
         {
             yield break;

@@ -1,5 +1,5 @@
+using System.Runtime.InteropServices;
 using DotnetManager.Core.Models;
-using DotnetManager.Platform.Abstractions;
 using DotnetManager.ReleaseMetadata.Models.Releases;
 using DotnetManager.Resolver.Exceptions;
 using DotnetManager.Resolver.Models.Results;
@@ -8,13 +8,6 @@ namespace DotnetManager.Resolver.Abstraction;
 
 public abstract class InstallResolverBase
 {
-    private readonly IHostPlatformService _platform;
-
-    protected InstallResolverBase(IHostPlatformService platform)
-    {
-        _platform = platform;
-    }
-
     protected ResolvedInstallation ResolveRelease(SdkReleaseManifest manifest,
         IEnumerable<DotnetComponent> components,
         SdkRelease release,
@@ -51,8 +44,13 @@ public abstract class InstallResolverBase
         return new ResolvedInstallation(result);
     }
 
-    private string GetRid(string? rid) => 
-        string.IsNullOrWhiteSpace(rid) ? _platform.RuntimeIdentifier : rid;
+    private static string GetRid(string? rid)
+    {
+        if (string.IsNullOrWhiteSpace(rid))
+            return RuntimeInformation.RuntimeIdentifier;
+
+        return rid;
+    }
 
     private ResolvedComponent ResolveComponent(DotnetComponent dotnetComponent,
         DotnetVersion dotnetVersion,
@@ -71,7 +69,9 @@ public abstract class InstallResolverBase
         };
     }
 
-    private static ReleaseFile ResolveArtifact(DotnetComponent component, DotnetVersion dotnetVersion, string rid)
+    private static ReleaseFile ResolveArtifact(DotnetComponent component,
+        DotnetVersion dotnetVersion,
+        string rid)
     {
         var (componentName, packageName) = component switch
         {

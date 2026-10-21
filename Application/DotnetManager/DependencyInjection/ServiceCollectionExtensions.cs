@@ -3,10 +3,8 @@ using DotnetManager.Cli.Abstractions;
 using DotnetManager.Cli.Commands.Available;
 using DotnetManager.Cli.Commands.Available.Abstraction;
 using DotnetManager.Cli.Commands.Available.Services;
-using DotnetManager.Cli.Commands.Install;
 using DotnetManager.Cli.Commands.List;
 using DotnetManager.Cli.Commands.Update;
-using DotnetManager.Installation.DependencyInjection;
 using DotnetManager.InstalledDotnet.DependencyInjection;
 using DotnetManager.ReleaseMetadata.DependencyInjection;
 using DotnetManager.UserEnvironment.DependencyInjection;
@@ -21,7 +19,6 @@ public static class ServiceCollectionExtensions
         return services
             .AddReleaseMetadata()
             .AddUserEnvironment()
-            .AddInstallation()
             .AddInstalledDotnet()
             .AddCli();
     }
@@ -30,7 +27,6 @@ public static class ServiceCollectionExtensions
     {
         services.AddSingleton<ISdkReleaseService, SdkReleaseService>();
         services.AddTransient<ICommand, AvailableCommand>();
-        services.AddTransient<ICommand, InstallCommand>();
         services.AddTransient<ICommand, ListCommand>();
         services.AddTransient<ICommand, UpdateCommand>();
         services.AddSingleton<CommandRegistration>();

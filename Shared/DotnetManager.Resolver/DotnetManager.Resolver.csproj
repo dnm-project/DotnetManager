@@ -9,7 +9,6 @@
     <ItemGroup>
         <ProjectReference Include="..\..\Discovery\DotnetManager.ReleaseMetadata\DotnetManager.ReleaseMetadata.csproj"/>
         <ProjectReference Include="..\..\Shared\DotnetManager.Core\DotnetManager.Core.csproj"/>
-        <ProjectReference Include="..\..\Shared\DotnetManager.Platform\DotnetManager.Platform.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

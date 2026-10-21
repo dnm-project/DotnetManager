@@ -19,8 +19,6 @@ public class ServiceCollectionExtensionsTests
             ValidateScopes = true
         });
 
-        Assert.NotNull(provider.GetRequiredService<IDotnetInstallOrchestratorService>());
-        Assert.NotNull(provider.GetRequiredService<IDotnetRemovalService>());
         Assert.NotNull(provider.GetRequiredService<IUEManager>());
     }
 }

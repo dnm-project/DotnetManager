@@ -13,14 +13,12 @@
         <Project Path="Installation/DotnetManager.Installation/DotnetManager.Installation.csproj" />
     </Folder>
     <Folder Name="/Reinstall/">
-        <Project Path="Reinstall/DotnetManager.Reinstallation.Planning/DotnetManager.Reinstallation.Planning.csproj" />
-        <Project Path="Reinstall/DotnetManager.Reinstallation.Execution/DotnetManager.Reinstallation.Execution.csproj" />
         <Project Path="Reinstall/DotnetManager.Reinstallation/DotnetManager.Reinstallation.csproj" />
     </Folder>
     <Folder Name="/Shared/">
         <Project Path="Shared/DotnetManager.Resolver/DotnetManager.Resolver.csproj" />
         <Project Path="Shared/DotnetManager.Core/DotnetManager.Core.csproj" />
-        <Project Path="Shared/DotnetManager.Platform/DotnetManager.Platform.csproj" />
+        <Project Path="Shared/DotnetManager.Packaging/DotnetManager.Packaging.csproj" />
     </Folder>
     <Folder Name="/Solution Items/">
         <File Path="compose.yaml" />

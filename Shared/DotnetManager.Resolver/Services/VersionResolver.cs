@@ -1,5 +1,4 @@
 using DotnetManager.Core.Models;
-using DotnetManager.Platform.Abstractions;
 using DotnetManager.ReleaseMetadata.Abstractions;
 using DotnetManager.ReleaseMetadata.Models.Index;
 using DotnetManager.ReleaseMetadata.Models.Releases;
@@ -15,7 +14,7 @@ public class VersionResolver : InstallResolverBase, IInstallResolver<VersionSele
 {
     private readonly ISdkManifestProviderService _provider;
 
-    public VersionResolver(ISdkManifestProviderService provider, IHostPlatformService platform) : base(platform)
+    public VersionResolver(ISdkManifestProviderService provider)
     {
         _provider = provider;
     }
@@ -39,11 +38,8 @@ public class VersionResolver : InstallResolverBase, IInstallResolver<VersionSele
         var manifest = await _provider.GetReleasesAsync(channel.ReleasesUri, cancellationToken);
         var latest = FindLatestVersion(manifest, selector) ?? throw new InstallReleaseNotFoundException(version);
 
-
         return ResolveRelease(manifest, components, latest, rid);
-
     }
-
 
     private static SdkRelease? FindLatestVersion(SdkReleaseManifest manifest, VersionSelector selector)
     {
