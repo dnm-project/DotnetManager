@@ -2,19 +2,26 @@ using System.Diagnostics;
 using System.Formats.Tar;
 using System.IO.Compression;
 using DotnetManager.Packaging.Abstractions.Archives;
+using DotnetManager.Packaging.Models.Downloads;
 using Microsoft.Extensions.Logging;
 
 namespace DotnetManager.Packaging.Services.Archives;
 
 internal sealed class ArchiveExtractor(ILogger<ArchiveExtractor> logger) : IArchiveExtractorService
 {
-    public async Task ExtractAsync(string archivePath, string destinationPath, CancellationToken cancellationToken)
+    public async Task ExtractAsync(DotnetDownload download, string destinationPath, CancellationToken cancellationToken)
     {
         var stopwatch = Stopwatch.StartNew();
+        Directory.CreateDirectory(destinationPath);
+        
+        var tempName = download.FileName.Split('_')[1];
+        var newFileName = tempName.Split('-')[1];
+
+        var archivePath = Path.Combine(destinationPath, newFileName);
+
         logger.LogInformation("Extracting {ArchivePath} to {DestinationPath}",
             archivePath, destinationPath);
-        Directory.CreateDirectory(destinationPath);
-
+        
         if (archivePath.EndsWith(".tar.gz", StringComparison.OrdinalIgnoreCase))
         {
             await ExtractTarGzAsync(archivePath, destinationPath, cancellationToken);
