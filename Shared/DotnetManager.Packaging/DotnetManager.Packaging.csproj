@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Discovery\DotnetManager.ReleaseMetadata\DotnetManager.ReleaseMetadata.csproj" />
+    </ItemGroup>
+
 </Project>
