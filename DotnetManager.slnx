@@ -11,9 +11,7 @@
     </Folder>
     <Folder Name="/Installation/">
         <Project Path="Installation/DotnetManager.Installation/DotnetManager.Installation.csproj" />
-    </Folder>
-    <Folder Name="/Reinstall/">
-        <Project Path="Reinstall/DotnetManager.Reinstallation/DotnetManager.Reinstallation.csproj" />
+        <Project Path="Installation/DotnetManager.Reinstallation/DotnetManager.Reinstallation.csproj" />
     </Folder>
     <Folder Name="/Shared/">
         <Project Path="Shared/DotnetManager.Resolver/DotnetManager.Resolver.csproj" />
