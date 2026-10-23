@@ -9,22 +9,22 @@ namespace DotnetManager.Packaging.Services.Archives;
 
 internal sealed class ArchiveExtractor(ILogger<ArchiveExtractor> logger) : IArchiveExtractorService
 {
-    public async Task ExtractAsync(DotnetDownload download, string destinationPath, CancellationToken cancellationToken)
+    public async Task ExtractAsync(string filePath, string fileName, string destinationPath, CancellationToken ct)
     {
         var stopwatch = Stopwatch.StartNew();
         Directory.CreateDirectory(destinationPath);
-        
-        var tempName = download.FileName.Split('_')[1];
+
+        var tempName = fileName.Split('_')[1];
         var newFileName = tempName.Split('-')[1];
 
         var archivePath = Path.Combine(destinationPath, newFileName);
 
         logger.LogInformation("Extracting {ArchivePath} to {DestinationPath}",
             archivePath, destinationPath);
-        
+
         if (archivePath.EndsWith(".tar.gz", StringComparison.OrdinalIgnoreCase))
         {
-            await ExtractTarGzAsync(archivePath, destinationPath, cancellationToken);
+            await ExtractTarGzAsync(archivePath, destinationPath, ct);
             LogCompleted(archivePath, stopwatch.Elapsed);
             return;
         }

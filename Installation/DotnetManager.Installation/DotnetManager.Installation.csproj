@@ -2,8 +2,8 @@
     <ItemGroup>
         <ProjectReference Include="../../Discovery/DotnetManager.ReleaseMetadata/DotnetManager.ReleaseMetadata.csproj"/>
         <ProjectReference Include="../../Environment/DotnetManager.UserEnvironment/DotnetManager.UserEnvironment.csproj"/>
-        <ProjectReference Include="..\DotnetManager.Resolver\DotnetManager.Resolver.csproj" />
         <ProjectReference Include="../../Shared/DotnetManager.Core/DotnetManager.Core.csproj"/>
+        <ProjectReference Include="../../Shared/DotnetManager.Resolver/DotnetManager.Resolver.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -15,8 +15,5 @@
     <ItemGroup>
         <InternalsVisibleTo Include="DotnetManager.UnitTests"/>
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Abstraction\" />
-    </ItemGroup>
+    
 </Project>

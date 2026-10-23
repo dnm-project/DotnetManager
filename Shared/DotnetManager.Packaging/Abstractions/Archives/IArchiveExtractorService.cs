@@ -4,5 +4,5 @@ namespace DotnetManager.Packaging.Abstractions.Archives;
 
 internal interface IArchiveExtractorService
 {
-    Task ExtractAsync(DotnetDownload download, string destinationPath, CancellationToken cancellationToken);
+    Task ExtractAsync(string filePath, string fileName, string destinationPath, CancellationToken ct);
 }
